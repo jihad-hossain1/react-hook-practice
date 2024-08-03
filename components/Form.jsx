@@ -2,17 +2,19 @@ import React, { useState, useReducer, useCallback } from "react";
 import { age_reducer, form_initialState, ACTION_TYPES } from "../hooks/reducer";
 import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
+import Modal from "./modal/Modal";
 
 const Form = () => {
   const [state, dispatch] = useReducer(age_reducer, form_initialState);
   const [newSkill, setNewSkill] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = useCallback(() => {
     console.log(state);
     toast.success("Form Submitted");
-
+    setIsOpen(true);
     // Dispatch action to reset form state
-    dispatch({ type: ACTION_TYPES.RESET_FORM });
+    // dispatch({ type: ACTION_TYPES.RESET_FORM });
   }, [state]);
 
   const handleChange = useCallback((field, value) => {
@@ -79,6 +81,9 @@ const Form = () => {
             <button onClick={handleSubmit} className="btn_primary w-fit">
               Submit
             </button>
+            <button onClick={() => dispatch({ type: ACTION_TYPES.RESET_FORM })} className="btn_primary bg-red-600 w-fit">
+              reset
+            </button>
           </div>
           <div className="flex gap-3">
             <div>
@@ -104,6 +109,18 @@ const Form = () => {
           </div>
         </div>
       </div>
+
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+       <div className="flex flex-col gap-3 p-3 text-gray-900">
+        <h4>
+          <span className="font-bold">{state.name}</span> is <span className="font-bold">{state.age}</span> years old.
+        </h4>
+        <p>{state.address}</p>
+        <p>{state.details.email}</p>
+        <p>{state.details.phone}</p>
+        <p>{state.skills.join(", ")}</p>
+       </div>
+      </Modal>
     </div>
   );
 };

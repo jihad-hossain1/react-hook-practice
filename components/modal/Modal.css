@@ -1,0 +1,36 @@
+/* Add these styles to your global CSS or a relevant CSS module */
+
+.dialog-enter {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.dialog-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.dialog-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dialog-exit-active {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+dialog {
+    border: none;
+    padding: 10px;
+    background-color: white;
+    /* Optional: Add background color */
+    max-width: 100%;
+    /* Adjust as needed */
+    margin: auto;
+    /* Center horizontally */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
