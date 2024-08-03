@@ -34,7 +34,7 @@ const Form = () => {
 
   return (
     <div>
-      <h4 className="text-center my-6">Form Data</h4>
+      <h4 className="text-center my-6">Use Reducer Form Data</h4>
       <div className="flex flex-col gap-3 w-1/2 mx-auto">
         <InputField
           className="input_primary"
